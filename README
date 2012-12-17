@@ -14,7 +14,6 @@ You do need sdio interrupt support in your kernel.  I'm using:
  http://www.sakoman.com/cgi-bin/gitweb.cgi?p=linux.git;a=commitdiff_plain;h=010810d22f6f49ac03da4ba384969432e0320453
 
 
-
 Building...
 
  I'm building outside of bitbake/openembedded, no particular reason.
@@ -23,6 +22,18 @@ Building...
    # PATH=$ARM_TOOLCHAIN_PATH:$PATH
    # export ARCH=arm
    # make
+
+
+
+Getting the firmware...
+
+ The uap firmware can be found on the internet in the Palm Pre jar files...
+
+   # wget http://downloads.help.palm.com/webosdoctor/rom/pre/p1411r0d03312010/sr1ntp1411rod/webosdoctorp100ewwsprint.jar
+   # fastjar xfv ./webosdoctorp100ewwsprint.jar
+   # cd resources
+   # tar -xvf ./webOS.tar ./nova-cust-image-castle.rootfs.tar.gz
+   # tar -zxvf ./nova-cust-image-castle.rootfs.tar.gz ./lib/firmware
 
 
 

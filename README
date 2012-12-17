@@ -1,0 +1,55 @@
+
+This module works well with my 3.5.0 kernel (I'm using Angstrom on an Overo IronStorm).
+
+It is based on the GPL'ed marvell code and patches at:
+
+  https://github.com/bauermann/dreamplug
+ 
+  and 
+
+  http://www.xilka.com/sheeva/kernel/3/3.2/3.2.9/source/linux-3.0-SDIO-micro-AP.patch
+
+You do need sdio interrupt support in your kernel.  I'm using:
+
+ http://www.sakoman.com/cgi-bin/gitweb.cgi?p=linux.git;a=commitdiff_plain;h=010810d22f6f49ac03da4ba384969432e0320453
+
+
+
+Building...
+
+ I'm building outside of bitbake/openembedded, no particular reason.
+
+   # ARM_TOOLCHAIN_PATH=~/setup-scripts/build/tmp-angstrom_v2012_05-eglibc/sysroots/x86_64-linux/usr/bin/armv7a-angstrom-linux-gnueabi
+   # PATH=$ARM_TOOLCHAIN_PATH:$PATH
+   # export ARCH=arm
+   # make
+
+
+
+Using...
+
+ On the target, put helper_sd.bin and sd8686_ap.bin in /lib/firmware/mrvl
+ then...
+   # insmod ./uap8xxx.ko
+   # ifconfig uap0 192.168.3.1 up
+   # ./wpa.sh
+ (also need to start a dhcp server)
+
+
+
+
+Example wpa.sh...
+
+ ./uaputl sys_cfg_ssid "marvell_wpa2"                                            
+ ./uaputl sys_cfg_protocol 32                                                    
+ ./uaputl sys_cfg_wpa_passphrase "abcdefgh"                                      
+ ./uaputl sys_cfg_cipher 8 8                                                     
+ ./uaputl sys_cfg_channel 0 1                                                    
+ ./uaputl bss_start
+
+
+
+Binaries...
+ 
+ Are in the "binaries" directory, and are for the gumstix overos.
+

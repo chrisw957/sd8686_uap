@@ -1,3 +1,10 @@
+
+Update:  For gumstix users, I have a single patch which can be added to your kernel recipe
+which will add this driver.  See: 
+https://github.com/chrisw957/meta-gumstix/commit/d0dbc51e1643860f9066c5e817db023fb062362c
+
+Original Posting:
+
 This module works well with my 3.5.0 kernel (I'm using Angstrom on an Overo IronStorm).
 
 It is based on the GPL'ed marvell code and patches at:
